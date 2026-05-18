@@ -1,0 +1,16 @@
+define flow sanitize_ticket_input
+  $user_message = execute mask_pii(text=$user_message)
+  $user_message = execute remove_sensitive_org_data(text=$user_message)
+
+define flow block_prompt_injection
+  $flag1 = execute detect_prompt_injection(text=$user_message)
+  if $flag1:
+    bot refuse
+
+define flow mask_sensitive_output
+  $output = execute mask_pii(text=$output)
+
+define flow ensure_safe_response
+  $flag2 = execute detect_toxicity(text=$output)
+  if $flag2:
+    $output = "Response blocked due to unsafe content."

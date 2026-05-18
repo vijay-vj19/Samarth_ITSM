@@ -1,0 +1,24 @@
+models:
+  - type: main
+    engine: openai
+    model: gpt-4o-mini
+
+instructions:
+  - type: general
+    content: |
+      Your are AI assistant.
+      You task is to give clear descriptions and resolution steps of the ITSM ticket, based on the user input.
+      Add the elaborated description to the ticket as one attribute, and return the ticket to the user.
+      Also add resolution steps to the ticket as one attribute, and return the ticket to the user.
+
+
+rails:
+  input:
+    flows:
+      - sanitize_ticket_input
+      - block_prompt_injection
+
+  output:
+    flows:
+      - ensure_safe_response
+
