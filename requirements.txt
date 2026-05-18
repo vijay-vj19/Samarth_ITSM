@@ -1,0 +1,13 @@
+streamlit
+pandas
+openpyxl==3.1.5
+python-dotenv
+openai
+numpy
+pypdf
+nemoguardrails==0.9.1.1
+langchain==0.2.16
+langchain-core==0.2.40
+langchain-community==0.2.16
+pydantic==2.9.2
+langchain-openai==0.1.25
